@@ -31,10 +31,10 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by admin on 4/29/2016.
  */
-public class loginAccount_BUS extends AsyncTask<String, Void, String> {
+public class LoginAccountBUS extends AsyncTask<String, Void, String> {
     Activity context;
 
-    public loginAccount_BUS(Activity context) {
+    public LoginAccountBUS(Activity context) {
         this.context = context;
     }
 

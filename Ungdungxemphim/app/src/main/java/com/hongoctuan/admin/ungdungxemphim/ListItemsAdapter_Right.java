@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.hongoctuan.admin.ungdungxemphim.BUS.loginAccount_BUS;
+import com.hongoctuan.admin.ungdungxemphim.BUS.LoginAccountBUS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +71,7 @@ public class ListItemsAdapter_Right extends ArrayAdapter<Object>
         return convertView;
     }
     public void loginAccount(String name, String pass){
-        loginAccount_BUS loginAccount_bus = new loginAccount_BUS(contextCha);
+        LoginAccountBUS loginAccount_bus = new LoginAccountBUS(contextCha);
         loginAccount_bus.execute(name, pass);
     }
 }

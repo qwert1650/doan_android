@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hongoctuan.admin.ungdungxemphim.BUS.loginAccount_BUS;
+import com.hongoctuan.admin.ungdungxemphim.BUS.LoginAccountBUS;
 import com.hongoctuan.admin.ungdungxemphim.R;
 
 /**
@@ -142,7 +142,7 @@ public class loginLayout {
             txtQuenmatkhaulayout.removeView(txtQuenmatkhau);
     }
     private void loginAccount(String name, String pass){
-        loginAccount_BUS loginAccount_bus = new loginAccount_BUS(context);
+        LoginAccountBUS loginAccount_bus = new LoginAccountBUS(context);
         loginAccount_bus.execute(name, pass);
     }
 }
