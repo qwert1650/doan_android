@@ -23,7 +23,7 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/imgLeftMenu"
-            android:background="@drawable/ic_menu" />
+            android:background="@drawable/user_login" />
 
         <!--<TextView-->
             <!--android:id="@+id/txtLeftMenu"-->
