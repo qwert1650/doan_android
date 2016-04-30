@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.hongoctuan.admin.ungdungxemphim.BUS.loginAccount_BUS;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by admin on 4/16/2016.
@@ -58,15 +58,20 @@ public class ListItemsAdapter_Right extends ArrayAdapter<Object>
         // TODO Auto-generated method stub
         LayoutInflater inflator=contextCha.getLayoutInflater();
         convertView=inflator.inflate(R.layout.login_layout, null);
-        EditText txt =(EditText) convertView.findViewById(R.id.eidt_tendangnhap);
-        Button btn = (Button) convertView.findViewById(R.id.btn_login);
+        final EditText txtName =(EditText) convertView.findViewById(R.id.eidt_tendangnhap);
+        final EditText txtPass = (EditText) convertView.findViewById(R.id.edit_matkhau);
+        Button btnLogin = (Button) convertView.findViewById(R.id.btn_login);
         String text=dataArray_right.get(position);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(contextCha,"noi dung 123 ",Toast.LENGTH_SHORT).show();
+                loginAccount(txtName.getText().toString(), txtPass.getText().toString());
             }
         });
         return convertView;
+    }
+    public void loginAccount(String name, String pass){
+        loginAccount_BUS loginAccount_bus = new loginAccount_BUS(contextCha);
+        loginAccount_bus.execute(name, pass);
     }
 }
