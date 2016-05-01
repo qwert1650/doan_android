@@ -7,8 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.hongoctuan.admin.ungdungxemphim.BUS.LoginAccountBUS;
+import com.hongoctuan.admin.ungdungxemphim.BUS.RegisterAccountBUS;
+import com.hongoctuan.admin.ungdungxemphim.View.registerLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,11 +64,19 @@ public class ListItemsAdapter_Right extends ArrayAdapter<Object>
         final EditText txtName =(EditText) convertView.findViewById(R.id.eidt_tendangnhap);
         final EditText txtPass = (EditText) convertView.findViewById(R.id.edit_matkhau);
         Button btnLogin = (Button) convertView.findViewById(R.id.btn_login);
+        TextView txtRegister = (TextView) convertView.findViewById(R.id.txt_dangkytaikhoan);
         String text=dataArray_right.get(position);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loginAccount(txtName.getText().toString(), txtPass.getText().toString());
+            }
+        });
+        txtRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerLayout registerlayout = new registerLayout(contextCha);
+                registerlayout.RegisterLayout();
             }
         });
         return convertView;

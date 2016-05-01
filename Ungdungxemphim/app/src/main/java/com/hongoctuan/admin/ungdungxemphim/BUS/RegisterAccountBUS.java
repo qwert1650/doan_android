@@ -2,15 +2,9 @@ package com.hongoctuan.admin.ungdungxemphim.BUS;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.TextView;
-import com.hongoctuan.admin.ungdungxemphim.R;
+import android.widget.Toast;
+
+import com.hongoctuan.admin.ungdungxemphim.DTO.AccountDTO;
 import com.hongoctuan.admin.ungdungxemphim.View.loginLayout;
 
 import org.apache.http.HttpResponse;
@@ -20,40 +14,45 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 /**
- * Created by admin on 4/29/2016.
+ * Created by admin on 5/1/2016.
  */
-public class LoginAccountBUS extends AsyncTask<String, Void, String> {
-    Activity context;
+public class RegisterAccountBUS extends AsyncTask<AccountDTO, Void, String> {
 
-    public LoginAccountBUS(Activity context) {
+    AccountDTO user = new AccountDTO();
+    Activity context;
+    public RegisterAccountBUS(Activity context) {
         this.context = context;
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected String doInBackground(AccountDTO... params) {
+        user = params[0];
         HttpClient httpClient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://restfullapiservice.somee.com/api/logginAccount");
+        HttpPost httpPost = new HttpPost("http://restfullapiservice.somee.com/api/insertaccount/");
         httpPost.setHeader("content-type", "application/json");
         JSONObject data = new JSONObject();
         try {
-            data.put("name",params[0]);
-            data.put("pass",params[1]);
+            data.put("name",user.getName().toString());
+            data.put("pass",user.getPass().toString());
+            data.put("cmnd",user.getPass().toString());
+            data.put("phone",user.getPhone().toString());
+            data.put("gioitinh",user.getGioitinh().toString());
+            data.put("tuoi",user.getTuoi().toString());
             StringEntity entity = null;
             entity = new StringEntity(data.toString(), HTTP.UTF_8);
             httpPost.setEntity(entity);
             HttpResponse response = httpClient.execute(httpPost);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-            String result = "";
-            return result = bufferedReader.readLine();
+            return bufferedReader.readLine();
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (ClientProtocolException e) {
@@ -67,28 +66,9 @@ public class LoginAccountBUS extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onProgressUpdate(Void... values) {
-        super.onProgressUpdate(values);
-    }
-
-    @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        if(s.equals("null")) {
-            TextView txtNotification = (TextView) context.findViewById(R.id.txtNotification);
-            txtNotification.setText("Tên đăng nhập, mật khẩu không chính xác!");
-        }
-        else{
-            String name = "";
-            try {
-                JSONObject jsonUser = new JSONObject(s);
-                name = jsonUser.getString("name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            loginLayout loginlayout = new loginLayout(context);
-            loginlayout.removeloginAccount();
-            loginlayout.updateLayout(name);
-        }
+        loginLayout loginlayout = new loginLayout(context);
+        loginlayout.updateLayout(user.getName().toString());
     }
 }
