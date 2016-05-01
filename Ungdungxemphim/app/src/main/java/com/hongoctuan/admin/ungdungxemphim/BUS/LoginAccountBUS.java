@@ -5,13 +5,14 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.hongoctuan.admin.ungdungxemphim.R;
-import com.hongoctuan.admin.ungdungxemphim.View.loginLayout;
+import com.hongoctuan.admin.ungdungxemphim.View.LoginLayout;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -20,7 +21,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -75,8 +75,11 @@ public class LoginAccountBUS extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         if(s.equals("null")) {
-            TextView txtNotification = (TextView) context.findViewById(R.id.txtNotification);
-            txtNotification.setText("Tên đăng nhập, mật khẩu không chính xác!");
+//            TextView txtNotification = (TextView) context.findViewById(R.id.txtNotification);
+//            txtNotification.setText("Tên đăng nhập, mật khẩu không chính xác!");
+            Toast.makeText(context, "Tên đăng nhập, mật khẩu không chính xác!",
+                    Toast.LENGTH_LONG).show();
+
         }
         else{
             String name = "";
@@ -86,8 +89,8 @@ public class LoginAccountBUS extends AsyncTask<String, Void, String> {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            loginLayout loginlayout = new loginLayout(context);
-            loginlayout.removeloginAccount();
+            LoginLayout loginlayout = new LoginLayout(context);
+            loginlayout.removeLoginAccountLayout();
             updateLayout(name);
         }
     }
@@ -123,8 +126,8 @@ public class LoginAccountBUS extends AsyncTask<String, Void, String> {
                 if(null!= btnLogoutlayout) //for safety only  as you are doing onClick
                     btnLogoutlayout.removeView(btnLogout);
 
-                loginLayout logoutAccout = new loginLayout(context);
-                logoutAccout.updateloginAccout();
+                LoginLayout logoutAccout = new LoginLayout(context);
+                logoutAccout.updateLoginAccountLayout();
             }
         });
     }

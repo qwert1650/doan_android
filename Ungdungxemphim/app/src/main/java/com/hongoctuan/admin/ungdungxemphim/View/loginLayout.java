@@ -15,14 +15,14 @@ import com.hongoctuan.admin.ungdungxemphim.R;
 /**
  * Created by admin on 4/30/2016.
  */
-public class loginLayout {
+public class LoginLayout {
 
     Activity context;
-    public loginLayout(Activity context) {
+    public LoginLayout(Activity context) {
         this.context = context;
     }
 
-    public void dangxuatAccoutnLayout(){
+    public void dangxuatAccountLayout(){
         ImageView ivIcon = new ImageView(context);
         LinearLayout ll = (LinearLayout)context.findViewById(R.id.line_loginlayout);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -38,7 +38,7 @@ public class loginLayout {
         ll.addView(btnLogout, lp);
     }
 
-    public void updateloginAccout(){
+    public void updateLoginAccountLayout(){
         LinearLayout ll = (LinearLayout)context.findViewById(R.id.line_loginlayout);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         ImageView ivLogin= new ImageView(context);
@@ -89,12 +89,12 @@ public class loginLayout {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginAccount(editTendangnhap.getText().toString(),editMatkhau.getText().toString());
+                loginAs(editTendangnhap.getText().toString(), editMatkhau.getText().toString());
             }
         });
     }
 
-    public void removeloginAccount(){
+    public void removeLoginAccountLayout(){
         //xoa button login
         Button btnLogin = (Button) context.findViewById(R.id.btn_login);
         ViewGroup btnLoginlayout = (ViewGroup)btnLogin.getParent();
@@ -141,7 +141,7 @@ public class loginLayout {
         if(null!= txtQuenmatkhaulayout) //for safety only  as you are doing onClick
             txtQuenmatkhaulayout.removeView(txtQuenmatkhau);
     }
-    private void loginAccount(String name, String pass){
+    private void loginAs(String name, String pass){
         LoginAccountBUS loginAccount_bus = new LoginAccountBUS(context);
         loginAccount_bus.execute(name, pass);
     }
