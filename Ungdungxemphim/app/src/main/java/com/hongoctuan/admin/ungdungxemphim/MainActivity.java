@@ -1,6 +1,8 @@
 package com.hongoctuan.admin.ungdungxemphim;
 
 import android.content.Context;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
@@ -14,16 +16,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHandler;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+    DatabaseHandler db;
+
     ArrayList<String> dataArray_right=new ArrayList<String>();
     ArrayList<Object> objectArray_right=new ArrayList<Object>();
     ArrayList<String> dataArray_left=new ArrayList<String>();
@@ -46,11 +53,13 @@ public class MainActivity extends ActionBarActivity {
     private static final Integer[] IMAGES= {R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.five};
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
+    ImageView iv_hd01,iv_hd02,iv_hd03,iv_hd04,iv_hd05,iv_hh01,iv_hh02,iv_hh03,iv_hh04,iv_hh05,iv_gt01,iv_gt02,iv_gt03,iv_gt04,iv_gt05;
+    TextView txt_hd01,txt_hd02,txt_hd03,txt_hd04,txt_hd05,txt_hh01,txt_hh02,txt_hh03,txt_hh04,txt_hh05,txt_gt01,txt_gt02,txt_gt03,txt_gt04,txt_gt05;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        initControl();
         //===============Initialization of Variables=========================//
 
         mDrawerlayout=(DrawerLayout)findViewById(R.id.drawer_layout);
@@ -82,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
-                if (mDrawerlayout.isDrawerOpen(mDrawerList_Right)){
+                if (mDrawerlayout.isDrawerOpen(mDrawerList_Right)) {
                     mDrawerlayout.closeDrawer(mDrawerList_Right);
                 }
                 mDrawerlayout.openDrawer(mDrawerList_Left);
@@ -94,7 +103,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                if (mDrawerlayout.isDrawerOpen(mDrawerList_Left)){
+                if (mDrawerlayout.isDrawerOpen(mDrawerList_Left)) {
                     mDrawerlayout.closeDrawer(mDrawerList_Left);
                 }
                 mDrawerlayout.openDrawer(mDrawerList_Right);
@@ -104,15 +113,14 @@ public class MainActivity extends ActionBarActivity {
         mDrawerList_Left.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),position+"",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
             }
         });
-
-
         Fill_LeftList();
         Fill_RightList();
         RefreshListView();
         init();
+        db = new DatabaseHandler(this);
     }
 
     // Filling the ArrayLists
@@ -192,5 +200,75 @@ public class MainActivity extends ActionBarActivity {
             public void onPageScrollStateChanged(int pos) {
             }
         });
+    }
+
+    public void initControl(){
+        iv_hd01 = (ImageView) findViewById(R.id.iv_hd01);
+        iv_hd02 = (ImageView) findViewById(R.id.iv_hd02);
+        iv_hd03 = (ImageView) findViewById(R.id.iv_hd03);
+        iv_hd04 = (ImageView) findViewById(R.id.iv_hd04);
+        iv_hd05 = (ImageView) findViewById(R.id.iv_hd05);
+
+        iv_hh01 = (ImageView) findViewById(R.id.iv_hh01);
+        iv_hh02 = (ImageView) findViewById(R.id.iv_hh02);
+        iv_hh03 = (ImageView) findViewById(R.id.iv_hh03);
+        iv_hh04 = (ImageView) findViewById(R.id.iv_hh04);
+        iv_hh05 = (ImageView) findViewById(R.id.iv_hh05);
+
+        iv_gt01 = (ImageView) findViewById(R.id.iv_gt01);
+        iv_gt02 = (ImageView) findViewById(R.id.iv_gt02);
+        iv_gt03 = (ImageView) findViewById(R.id.iv_gt03);
+        iv_gt04 = (ImageView) findViewById(R.id.iv_gt04);
+        iv_gt05 = (ImageView) findViewById(R.id.iv_gt05);
+
+        txt_hd01 = (TextView) findViewById(R.id.txt_hd01);
+        txt_hd02 = (TextView) findViewById(R.id.txt_hd02);
+        txt_hd03 = (TextView) findViewById(R.id.txt_hd03);
+        txt_hd04 = (TextView) findViewById(R.id.txt_hd04);
+        txt_hd05 = (TextView) findViewById(R.id.txt_hd05);
+
+        txt_hh01 = (TextView) findViewById(R.id.txt_hh01);
+        txt_hh02 = (TextView) findViewById(R.id.txt_hh02);
+        txt_hh03 = (TextView) findViewById(R.id.txt_hh03);
+        txt_hh04 = (TextView) findViewById(R.id.txt_hh04);
+        txt_hh05 = (TextView) findViewById(R.id.txt_hh05);
+
+        txt_gt01 = (TextView) findViewById(R.id.txt_gt01);
+        txt_gt02 = (TextView) findViewById(R.id.txt_gt02);
+        txt_gt03 = (TextView) findViewById(R.id.txt_gt03);
+        txt_gt04 = (TextView) findViewById(R.id.txt_gt04);
+        txt_gt05 = (TextView) findViewById(R.id.txt_gt05);
+
+        iv_hd01.setOnClickListener(this);
+        iv_hd02.setOnClickListener(this);
+        iv_hd03.setOnClickListener(this);
+        iv_hd04.setOnClickListener(this);
+        iv_hd05.setOnClickListener(this);
+
+        iv_hh01.setOnClickListener(this);
+        iv_hh02.setOnClickListener(this);
+        iv_hh03.setOnClickListener(this);
+        iv_hh04.setOnClickListener(this);
+        iv_hh05.setOnClickListener(this);
+
+        iv_gt01.setOnClickListener(this);
+        iv_gt02.setOnClickListener(this);
+        iv_gt03.setOnClickListener(this);
+        iv_gt04.setOnClickListener(this);
+        iv_gt05.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        String id="";
+        if(v.getId() == iv_hd01.getId())
+            id = "hd01";
+        if(v.getId() == iv_hd02.getId())
+            id = "hd02";
+        Intent intent = new Intent(MainActivity.this, MovieDetail.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", id);
+        intent.putExtra("myData",bundle);
+        startActivity(intent);
     }
 }

@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Ungdungxemphim</string>
     <string name="quenmatkhau"><u>Quên Mật Khẩu</u></string>
+    <string name="noidungphim"><b><u>Nội Dung Phim</u></b></string>
+    <string name="binhchon"><b><u>Bình Chọn:</u></b></string>
 </resources>
