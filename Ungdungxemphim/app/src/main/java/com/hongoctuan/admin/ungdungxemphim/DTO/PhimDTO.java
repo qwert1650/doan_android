@@ -1,9 +1,11 @@
 package com.hongoctuan.admin.ungdungxemphim.DTO;
 
+import java.io.Serializable;
+
 /**
  * Created by admin on 5/3/2016.
  */
-public class PhimDTO {
+public class PhimDTO implements Serializable {
     public String getMaphim() {
         return maphim;
     }
@@ -52,10 +54,28 @@ public class PhimDTO {
         this.tomtat = tomtat;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getTheloai() {
+        return theloai;
+    }
+
+    public void setTheloai(String theloai) {
+        this.theloai = theloai;
+    }
+
+    String theloai;
     String maphim;
     String tenphim;
     String daodien;
     String dienvien;
     String danhgia;
     String tomtat;
+    String url;
 }

@@ -43,7 +43,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         phim.setDienvien(cursor.getString(3));
         phim.setDanhgia(cursor.getString(4));
         phim.setTomtat(cursor.getString(5));
+        phim.setTheloai(cursor.getString(6));
+        phim.setUrl(cursor.getString(7));
+        db.close();
         return phim;
+    }
+    public ArrayList<PhimDTO> getListPhimGoiY(String theloai, String maphim){
+        ArrayList<PhimDTO> list = new ArrayList<PhimDTO>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "select * from " + TABLE_PHIM +" where id != '"+maphim+"' and theloai = '" + theloai +"'";
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            PhimDTO phim = new PhimDTO();
+            phim.setMaphim(cursor.getString(0));
+            phim.setTenphim(cursor.getString(1));
+            phim.setDaodien(cursor.getString(2));
+            phim.setDienvien(cursor.getString(3));
+            phim.setDanhgia(cursor.getString(4));
+            phim.setTomtat(cursor.getString(5));
+            phim.setTheloai(cursor.getString(6));
+            phim.setUrl(cursor.getString(7));
+            list.add(phim);
+            cursor.moveToNext();
+        }
+        db.close();
+        return list;
     }
     public ArrayList<BinhluanDTO> getBinhluan(String maphim){
         ArrayList<BinhluanDTO> list = new ArrayList<>();
@@ -59,6 +84,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             list.add(binhluan);
             cursor.moveToNext();
         }
+        db.close();
         return list;
     }
 
@@ -76,6 +102,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "chỉ huy được chính CIA nhờ tiêu diệt cựu điệp viên xấu Paine thì Ross đã biết nhiệm vụ lần này vô cùng nguy hiểm. " +
                 "Anh đã có thể dừng lại nhưng sự ám ảnh về cô gái có bức vẽ tuyệt vời Sandra đã đẩy anh và nhóm đến một cuộc chiến " +
                 "đầy cam go.");
+        values.put("theloai", "hd");
+        values.put("url", "https://www.youtube.com/watch?v=0qjxbz7cBmU");
 
 
         if(db.insert(TABLE_PHIM, null, values)!= -1){
@@ -109,7 +137,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sql+="daodien TEXT,";
         sql+="dienvien TEXT,";
         sql+="danhgia TEXT,";
-        sql+="tomtat TEXT)";
+        sql+="tomtat TEXT,";
+        sql+="theloai TEXT,";
+        sql+="url TEXT)";
         db.execSQL(sql);
     }
 

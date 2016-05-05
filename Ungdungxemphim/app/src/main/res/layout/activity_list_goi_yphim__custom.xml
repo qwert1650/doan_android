@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.hongoctuan.admin.ungdungxemphim.BUS.listGoiYPhim_Custom">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:id="@+id/iv_goiyIcon" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorOrange"
+            android:textStyle="bold"
+            android:text="Tên Phim"
+            android:id="@+id/txt_goiyTenPhim" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Diễn Viên"
+            android:textColor="#FFFFFF"
+            android:id="@+id/txt_goiyDienvien" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Noi ung"
+            android:textColor="#FFFFFF"
+            android:id="@+id/txt_goiyNoidung" />
+    </LinearLayout>
+</LinearLayout>

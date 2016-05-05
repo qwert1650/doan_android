@@ -9,17 +9,21 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Html;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hongoctuan.admin.ungdungxemphim.BUS.WatchMovieBUS;
 import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHandler;
 import com.hongoctuan.admin.ungdungxemphim.DTO.BinhluanDTO;
 import com.hongoctuan.admin.ungdungxemphim.DTO.PhimDTO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MovieDetail extends Activity {
@@ -29,6 +33,7 @@ public class MovieDetail extends Activity {
     ImageView iv_phim;
     ArrayList<BinhluanDTO> list_binhluan;
     ListView lv_binhluan;
+    Button btn_xemPhim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,7 @@ public class MovieDetail extends Activity {
         iv_phim = (ImageView) findViewById(R.id.iv_phim);
         txt_noidungphim = (TextView) findViewById(R.id.txt_noidungphim);
         lv_binhluan = (ListView) findViewById(R.id.lv_binhluan);
+        btn_xemPhim = (Button) findViewById(R.id.btn_xemphim);
 
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
@@ -65,5 +71,17 @@ public class MovieDetail extends Activity {
         txt_noidungphim.setText(phim.getTomtat());
         BinhLuan_CustomList binhluanAdapter = new BinhLuan_CustomList(this,R.layout.activity_binh_luan__custom_list,list_binhluan);
         lv_binhluan.setAdapter(binhluanAdapter);
+
+        btn_xemPhim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = phim.getUrl();
+                Intent intent = new Intent(getApplicationContext(), WatchMovieBUS.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("maphim", phim);
+                intent.putExtra("myData",bundle);
+                startActivity(intent);
+            }
+        });
     }
 }
