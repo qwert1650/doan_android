@@ -1,12 +1,9 @@
 package com.hongoctuan.admin.ungdungxemphim;
-
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Handler;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,21 +12,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHandler;
-import com.viewpagerindicator.CirclePageIndicator;
+import com.hongoctuan.admin.ungdungxemphim.BUS.GoiYSearchFragment;
+import com.hongoctuan.admin.ungdungxemphim.BUS.MainFragment;
+import com.hongoctuan.admin.ungdungxemphim.BUS.SearchFragment;
+import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHelper;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
-    DatabaseHandler db;
+public class MainActivity extends ActionBarActivity{
+    DatabaseHelper db;
 
     ArrayList<String> dataArray_right=new ArrayList<String>();
     ArrayList<Object> objectArray_right=new ArrayList<Object>();
@@ -43,23 +41,31 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     ImageButton imgLeftMenu,imgRightMenu;
 
 
-    ListItemsAdapter_Left Left_Adapter;
-    ListItemsAdapter_Right Right_Adapter;
+    ListItemsAdapterLeft Left_Adapter;
+    ListItemsAdapterRight Right_Adapter;
 
-    //slide show
-    private static ViewPager mPager;
-    private static int currentPage = 0;
-    private static int NUM_PAGES = 0;
-    private static final Integer[] IMAGES= {R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.five};
-    private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
+    //Search
+    ImageView iv_back;
+    ImageView iv_timkiem;
+    AutoCompleteTextView auto_Search;
+    ArrayList<String> list_autoSearch = new ArrayList<String>();
 
-    ImageView iv_hd01,iv_hd02,iv_hd03,iv_hd04,iv_hd05,iv_hh01,iv_hh02,iv_hh03,iv_hh04,iv_hh05,iv_gt01,iv_gt02,iv_gt03,iv_gt04,iv_gt05;
-    TextView txt_hd01,txt_hd02,txt_hd03,txt_hd04,txt_hd05,txt_hh01,txt_hh02,txt_hh03,txt_hh04,txt_hh05,txt_gt01,txt_gt02,txt_gt03,txt_gt04,txt_gt05;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initControl();
+        iv_timkiem = (ImageView) findViewById(R.id.iv_timkiem);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
+        db= new DatabaseHelper(this);
+        list_autoSearch = db.getDanhSachPhim();
+        auto_Search = (AutoCompleteTextView) findViewById(R.id.autoCompleteSearch);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list_autoSearch);
+
+        auto_Search.setAdapter(adapter);
+        auto_Search.setThreshold(1);
+
+        loadTrangChu();
+        //initControl();
         //===============Initialization of Variables=========================//
 
         mDrawerlayout=(DrawerLayout)findViewById(R.id.drawer_layout);
@@ -119,8 +125,33 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         Fill_LeftList();
         Fill_RightList();
         RefreshListView();
-        init();
-        db = new DatabaseHandler(this);
+        //init();
+        db = new DatabaseHelper(this);
+
+        iv_timkiem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_back.setVisibility(View.VISIBLE);
+                auto_Search.setPadding(50, 0, 50, 0);
+                db.insertLichSu(auto_Search.getText().toString());
+                loadTimKiem();
+            }
+        });
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_back.setVisibility(View.GONE);
+                auto_Search.setPadding(10,0,50,0);
+                loadTrangChu();
+            }
+        });
+
+        auto_Search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadGoiYSeach(auto_Search.getText().toString());
+            }
+        });
     }
 
     // Filling the ArrayLists
@@ -133,7 +164,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             objectArray_left.add(obj);
         }
         Log.d("object array", "" + objectArray_left.size());
-        Left_Adapter = new ListItemsAdapter_Left(this,objectArray_left, 1,dataArray_left,menu);
+        Left_Adapter = new ListItemsAdapterLeft(this,objectArray_left, 1,dataArray_left,menu);
         mDrawerList_Left.setAdapter(Left_Adapter);
 
         objectArray_right.clear();
@@ -142,7 +173,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             objectArray_right.add(obj);
         }
         Log.d("object array", "" + objectArray_right.size());
-        Right_Adapter = new ListItemsAdapter_Right(this,objectArray_right, 1,dataArray_right);
+        Right_Adapter = new ListItemsAdapterRight(this,objectArray_right, 1,dataArray_right);
         mDrawerList_Right.setAdapter(Right_Adapter);
     }
     public void Fill_LeftList()
@@ -152,123 +183,27 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         dataArray_left.add("Lich Chiếu Theo Rạp");
     }
 
-
     public void Fill_RightList()
     {
         dataArray_right.clear();
         dataArray_right.add("Option 1");
     }
 
-
-    private void init() {
-        for(int i=0;i<IMAGES.length;i++)
-            ImagesArray.add(IMAGES[i]);
-        mPager = (ViewPager) findViewById(R.id.pager);
-        mPager.setAdapter(new SlidingImage_Adapter(MainActivity.this,ImagesArray));
-        CirclePageIndicator indicator = (CirclePageIndicator) findViewById(R.id.indicator);
-        indicator.setViewPager(mPager);
-        final float density = getResources().getDisplayMetrics().density;
-        indicator.setRadius(5 * density);
-        NUM_PAGES =IMAGES.length;
-        // Auto start of viewpager
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == NUM_PAGES) {
-                    currentPage = 0;
-                }
-                mPager.setCurrentItem(currentPage++, true);
-            }
-        };
-        Timer swipeTimer = new Timer();
-        swipeTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, 3000, 3000);
-        // Pager listener over indicator
-        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                currentPage = position;
-            }
-            @Override
-            public void onPageScrolled(int pos, float arg1, int arg2) {
-            }
-            @Override
-            public void onPageScrollStateChanged(int pos) {
-            }
-        });
+    public void loadTrangChu(){
+        Fragment fragment = new MainFragment(this);
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.mainFragment, fragment).commit();
     }
 
-    public void initControl(){
-        iv_hd01 = (ImageView) findViewById(R.id.iv_hd01);
-        iv_hd02 = (ImageView) findViewById(R.id.iv_hd02);
-        iv_hd03 = (ImageView) findViewById(R.id.iv_hd03);
-        iv_hd04 = (ImageView) findViewById(R.id.iv_hd04);
-        iv_hd05 = (ImageView) findViewById(R.id.iv_hd05);
-
-        iv_hh01 = (ImageView) findViewById(R.id.iv_hh01);
-        iv_hh02 = (ImageView) findViewById(R.id.iv_hh02);
-        iv_hh03 = (ImageView) findViewById(R.id.iv_hh03);
-        iv_hh04 = (ImageView) findViewById(R.id.iv_hh04);
-        iv_hh05 = (ImageView) findViewById(R.id.iv_hh05);
-
-        iv_gt01 = (ImageView) findViewById(R.id.iv_gt01);
-        iv_gt02 = (ImageView) findViewById(R.id.iv_gt02);
-        iv_gt03 = (ImageView) findViewById(R.id.iv_gt03);
-        iv_gt04 = (ImageView) findViewById(R.id.iv_gt04);
-        iv_gt05 = (ImageView) findViewById(R.id.iv_gt05);
-
-        txt_hd01 = (TextView) findViewById(R.id.txt_hd01);
-        txt_hd02 = (TextView) findViewById(R.id.txt_hd02);
-        txt_hd03 = (TextView) findViewById(R.id.txt_hd03);
-        txt_hd04 = (TextView) findViewById(R.id.txt_hd04);
-        txt_hd05 = (TextView) findViewById(R.id.txt_hd05);
-
-        txt_hh01 = (TextView) findViewById(R.id.txt_hh01);
-        txt_hh02 = (TextView) findViewById(R.id.txt_hh02);
-        txt_hh03 = (TextView) findViewById(R.id.txt_hh03);
-        txt_hh04 = (TextView) findViewById(R.id.txt_hh04);
-        txt_hh05 = (TextView) findViewById(R.id.txt_hh05);
-
-        txt_gt01 = (TextView) findViewById(R.id.txt_gt01);
-        txt_gt02 = (TextView) findViewById(R.id.txt_gt02);
-        txt_gt03 = (TextView) findViewById(R.id.txt_gt03);
-        txt_gt04 = (TextView) findViewById(R.id.txt_gt04);
-        txt_gt05 = (TextView) findViewById(R.id.txt_gt05);
-
-        iv_hd01.setOnClickListener(this);
-        iv_hd02.setOnClickListener(this);
-        iv_hd03.setOnClickListener(this);
-        iv_hd04.setOnClickListener(this);
-        iv_hd05.setOnClickListener(this);
-
-        iv_hh01.setOnClickListener(this);
-        iv_hh02.setOnClickListener(this);
-        iv_hh03.setOnClickListener(this);
-        iv_hh04.setOnClickListener(this);
-        iv_hh05.setOnClickListener(this);
-
-        iv_gt01.setOnClickListener(this);
-        iv_gt02.setOnClickListener(this);
-        iv_gt03.setOnClickListener(this);
-        iv_gt04.setOnClickListener(this);
-        iv_gt05.setOnClickListener(this);
+    public void loadTimKiem() {
+        Fragment fragment = new SearchFragment(this,auto_Search.getText().toString());
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.mainFragment, fragment).commit();
     }
 
-    @Override
-    public void onClick(View v) {
-        String id="";
-        if(v.getId() == iv_hd01.getId())
-            id = "hd01";
-        if(v.getId() == iv_hd02.getId())
-            id = "hd02";
-        Intent intent = new Intent(MainActivity.this, MovieDetail.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("id", id);
-        intent.putExtra("myData",bundle);
-        startActivity(intent);
+    public void loadGoiYSeach(String keyword){
+        Fragment fragment = new GoiYSearchFragment(this,auto_Search.getText().toString());
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.mainFragment, fragment).commit();
     }
 }

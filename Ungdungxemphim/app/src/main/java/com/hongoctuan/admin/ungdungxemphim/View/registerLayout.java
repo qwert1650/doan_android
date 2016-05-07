@@ -5,10 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.hongoctuan.admin.ungdungxemphim.BUS.RegisterAccountBUS;
@@ -122,15 +120,15 @@ public class registerLayout  {
             @Override
             public void onClick(View v) {
                 AccountDTO user = new AccountDTO();
-                user.setName(editTendangnhap.getText().toString());
-                user.setPass(editMatkhau.getText().toString());
-                user.setCmnd(editCmnd.getText().toString());
-                user.setPhone(editPhone.getText().toString());
-                user.setTuoi(editTuoi.getText().toString());
+                user.setAccountName(editTendangnhap.getText().toString());
+                user.setPassword(editMatkhau.getText().toString());
+                user.setIdNumber(editCmnd.getText().toString());
+                user.setPhoneNumber(editPhone.getText().toString());
+                user.setAge(editTuoi.getText().toString());
                 if(rbNam.isChecked()){
-                    user.setGioitinh("Nam");
+                    user.setSex("Nam");
                 }else{
-                    user.setGioitinh("Nữ");
+                    user.setSex("Nữ");
                 }
                 RegisterAccountBUS registerAccountBUS = new RegisterAccountBUS(context);
                 registerAccountBUS.execute(user);
