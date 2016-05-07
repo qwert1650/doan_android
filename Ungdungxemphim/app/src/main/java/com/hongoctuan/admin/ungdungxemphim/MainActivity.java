@@ -2,6 +2,10 @@ package com.hongoctuan.admin.ungdungxemphim;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+<<<<<<< HEAD
+=======
+import android.content.Intent;
+>>>>>>> origin/master
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.widget.DrawerLayout;
@@ -19,14 +23,23 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import com.hongoctuan.admin.ungdungxemphim.BUS.GoiYSearchFragment;
 import com.hongoctuan.admin.ungdungxemphim.BUS.MainFragment;
 import com.hongoctuan.admin.ungdungxemphim.BUS.SearchFragment;
 import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHelper;
+=======
+import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHelper;
+import com.viewpagerindicator.CirclePageIndicator;
+>>>>>>> origin/master
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 public class MainActivity extends ActionBarActivity{
+=======
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+>>>>>>> origin/master
     DatabaseHelper db;
 
     ArrayList<String> dataArray_right=new ArrayList<String>();
@@ -125,6 +138,7 @@ public class MainActivity extends ActionBarActivity{
         Fill_LeftList();
         Fill_RightList();
         RefreshListView();
+<<<<<<< HEAD
         //init();
         db = new DatabaseHelper(this);
 
@@ -152,6 +166,10 @@ public class MainActivity extends ActionBarActivity{
                 loadGoiYSeach(auto_Search.getText().toString());
             }
         });
+=======
+        init();
+        db = new DatabaseHelper(this);
+>>>>>>> origin/master
     }
 
     // Filling the ArrayLists
@@ -189,10 +207,54 @@ public class MainActivity extends ActionBarActivity{
         dataArray_right.add("Option 1");
     }
 
+<<<<<<< HEAD
     public void loadTrangChu(){
         Fragment fragment = new MainFragment(this);
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.mainFragment, fragment).commit();
+=======
+
+    private void init() {
+        for(int i=0;i<IMAGES.length;i++)
+            ImagesArray.add(IMAGES[i]);
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setAdapter(new SlidingImageAdapter(MainActivity.this,ImagesArray));
+        CirclePageIndicator indicator = (CirclePageIndicator) findViewById(R.id.indicator);
+        indicator.setViewPager(mPager);
+        final float density = getResources().getDisplayMetrics().density;
+        indicator.setRadius(5 * density);
+        NUM_PAGES =IMAGES.length;
+        // Auto start of viewpager
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == NUM_PAGES) {
+                    currentPage = 0;
+                }
+                mPager.setCurrentItem(currentPage++, true);
+            }
+        };
+        Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 3000, 3000);
+        // Pager listener over indicator
+        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+            }
+            @Override
+            public void onPageScrolled(int pos, float arg1, int arg2) {
+            }
+            @Override
+            public void onPageScrollStateChanged(int pos) {
+            }
+        });
+>>>>>>> origin/master
     }
 
     public void loadTimKiem() {

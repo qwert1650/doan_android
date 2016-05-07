@@ -6,10 +6,11 @@ package com.hongoctuan.admin.ungdungxemphim.DTO;
 public class CommentDTO {
     String icon;
     String content;
-    String nguoibinhluan;
-    String mabinhluan;
+    String commenter;
+    String commentId;
 
     public String getCommentId() {
+<<<<<<< HEAD:Ungdungxemphim/app/src/main/java/com/hongoctuan/admin/ungdungxemphim/DTO/CommentDTO.java
         return mabinhluan;
     }
 
@@ -23,6 +24,21 @@ public class CommentDTO {
 
     public void setCommenter(String nguoibinhluan) {
         this.nguoibinhluan = nguoibinhluan;
+=======
+        return commentId;
+    }
+
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
+    }
+
+    public String getCommenter() {
+        return commenter;
+    }
+
+    public void setCommenter(String commenter) {
+        this.commenter = commenter;
+>>>>>>> origin/master:Ungdungxemphim/app/src/main/java/com/hongoctuan/admin/ungdungxemphim/DTO/CommentDTO.java
     }
 
 

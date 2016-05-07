@@ -9,24 +9,39 @@ public class AccountDTO {
         return age;
     }
 
+<<<<<<< HEAD
     public void setAge(String tuoi) {
         this.age = tuoi;
+=======
+    public void setAge(String age) {
+        this.age = age;
+>>>>>>> origin/master
     }
 
     public String getSex() {
         return sex;
     }
 
+<<<<<<< HEAD
     public void setSex(String gioitinh) {
         this.sex = gioitinh;
+=======
+    public void setSex(String sex) {
+        this.sex = sex;
+>>>>>>> origin/master
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+<<<<<<< HEAD
     public void setPhoneNumber(String phone) {
         this.phoneNumber = phone;
+=======
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+>>>>>>> origin/master
     }
 
     public String getIdNumber() {
@@ -41,16 +56,26 @@ public class AccountDTO {
         return password;
     }
 
+<<<<<<< HEAD
     public void setPassword(String pass) {
         this.password = pass;
+=======
+    public void setPassword(String password) {
+        this.password = password;
+>>>>>>> origin/master
     }
 
     public String getAccountName() {
         return accountName;
     }
 
+<<<<<<< HEAD
     public void setAccountName(String name) {
         this.accountName = name;
+=======
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+>>>>>>> origin/master
     }
 
     public int getId() {

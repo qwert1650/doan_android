@@ -14,6 +14,7 @@ import com.google.android.youtube.player.YouTubePlayerView;
 import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHelper;
 import com.hongoctuan.admin.ungdungxemphim.DTO.MovieDTO;
 import com.hongoctuan.admin.ungdungxemphim.R;
+import com.hongoctuan.admin.ungdungxemphim.RelatedMovieCustomList;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,11 @@ public class WatchMovieBUS extends YouTubeBaseActivity implements YouTubePlayer.
         lv_goiyPhim = (ListView) findViewById(R.id.lv_goiyPhim);
         MovieDTO phim = (MovieDTO) packageFromCaller.getSerializable("maphim");
         db = new DatabaseHelper(this);
+<<<<<<< HEAD
         list_goiyPhim = db.getListPhimGoiY("hd",phim.getMaphim());
+=======
+        list_goiyPhim = db.getListPhimGoiY("hd",phim.getMovieId());
+>>>>>>> origin/master
         VIDEO_ID = phim.getMovieUrl();
         videoPlayer = (YouTubePlayerView) findViewById(R.id.youtube_player);
         videoPlayer.initialize(API_KEY, this);

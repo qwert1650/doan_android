@@ -41,9 +41,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         phim.setMovieId(cursor.getString(0));
         phim.setMovieName(cursor.getString(1));
         phim.setDirectorName(cursor.getString(2));
+<<<<<<< HEAD:Ungdungxemphim/app/src/main/java/com/hongoctuan/admin/ungdungxemphim/DAO/DatabaseHelper.java
         phim.setActor(cursor.getString(3));
         phim.setRateString(cursor.getString(4));
         phim.setMovieSumary(cursor.getString(5));
+=======
+        phim.setActorName(cursor.getString(3));
+        phim.setRateString(cursor.getString(4));
+        phim.setMovieSummary(cursor.getString(5));
+>>>>>>> origin/master:Ungdungxemphim/app/src/main/java/com/hongoctuan/admin/ungdungxemphim/DAO/DatabaseHelper.java
         phim.setCategory(cursor.getString(6));
         phim.setMovieUrl(cursor.getString(7));
         db.close();
@@ -60,9 +66,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             phim.setMovieId(cursor.getString(0));
             phim.setMovieName(cursor.getString(1));
             phim.setDirectorName(cursor.getString(2));
+<<<<<<< HEAD:Ungdungxemphim/app/src/main/java/com/hongoctuan/admin/ungdungxemphim/DAO/DatabaseHelper.java
             phim.setActor(cursor.getString(3));
             phim.setRateString(cursor.getString(4));
             phim.setMovieSumary(cursor.getString(5));
+=======
+            phim.setActorName(cursor.getString(3));
+            phim.setRateString(cursor.getString(4));
+            phim.setMovieSummary(cursor.getString(5));
+>>>>>>> origin/master:Ungdungxemphim/app/src/main/java/com/hongoctuan/admin/ungdungxemphim/DAO/DatabaseHelper.java
             phim.setCategory(cursor.getString(6));
             phim.setMovieUrl(cursor.getString(7));
             list.add(phim);
@@ -71,6 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return list;
     }
+<<<<<<< HEAD:Ungdungxemphim/app/src/main/java/com/hongoctuan/admin/ungdungxemphim/DAO/DatabaseHelper.java
 
     public ArrayList<MovieDTO> getSearchPhim (String tenphim){
         ArrayList<MovieDTO> list = new ArrayList<MovieDTO>();
@@ -109,6 +122,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
+=======
+>>>>>>> origin/master:Ungdungxemphim/app/src/main/java/com/hongoctuan/admin/ungdungxemphim/DAO/DatabaseHelper.java
     public ArrayList<CommentDTO> getBinhluan(String maphim){
         ArrayList<CommentDTO> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();

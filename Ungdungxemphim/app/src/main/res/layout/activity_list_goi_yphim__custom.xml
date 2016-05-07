@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:orientation="vertical"
     tools:context=".BUS.RelatedMovieCustomList">
+=======
+    android:orientation="horizontal"
+    tools:context=".RelatedMovieCustomList">
+>>>>>>> origin/master
 
     <ImageView
         android:layout_width="wrap_content"
