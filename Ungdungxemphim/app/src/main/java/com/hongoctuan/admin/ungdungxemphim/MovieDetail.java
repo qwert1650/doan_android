@@ -61,19 +61,11 @@ public class MovieDetail extends Activity {
         txt_tenphim.setText(phim.getMovieName());
         String htmlDaodien="<b><u>Đạo diễn:</u></b>" +" "+ phim.getDirectorName();
         txt_daodien.setText(Html.fromHtml(htmlDaodien));
-<<<<<<< HEAD
         String htmlDienvien="<b><u>Diễn viên:</u></b>"+" "+ phim.getActor();
         txt_dienvien.setText(Html.fromHtml(htmlDienvien));
         int maphim = getResources().getIdentifier("com.hongoctuan.admin.ungdungxemphim:drawable/" + id, null, null);
         iv_phim.setImageResource(maphim);
         txt_noidungphim.setText(phim.getMovieSumary());
-=======
-        String htmlDienvien="<b><u>Diễn viên:</u></b>"+" "+ phim.getActorName();
-        txt_dienvien.setText(Html.fromHtml(htmlDienvien));
-        int maphim = getResources().getIdentifier("com.hongoctuan.admin.ungdungxemphim:drawable/" + id, null, null);
-        iv_phim.setImageResource(maphim);
-        txt_noidungphim.setText(phim.getMovieSummary());
->>>>>>> origin/master
         CommentCustomList binhluanAdapter = new CommentCustomList(this,R.layout.activity_binh_luan__custom_list,list_binhluan);
         lv_binhluan.setAdapter(binhluanAdapter);
 

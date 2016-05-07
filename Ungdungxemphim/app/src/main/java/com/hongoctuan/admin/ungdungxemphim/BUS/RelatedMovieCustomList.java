@@ -40,18 +40,18 @@ public class RelatedMovieCustomList extends ArrayAdapter<MovieDTO> {
         String htmlNoidung="<b><u>Tóm Tắt:</u></b>" +" "+ objects.get(position).getMovieSumary().substring(0,70)+"...";;
         txt_goiyNoidung.setText(Html.fromHtml(htmlNoidung));
         txt_goiyTenphim.setText(objects.get(position).getMovieName());
-        int maphim = context.getResources().getIdentifier("com.hongoctuan.admin.ungdungxemphim:drawable/" + objects.get(position).getMaphim(), null, null);
+        int maphim = context.getResources().getIdentifier("com.hongoctuan.admin.ungdungxemphim:drawable/" + objects.get(position).getMovieId(), null, null);
         iv_goiyIcon.setImageResource(maphim);
         iv_goiyIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                xemphim(objects.get(position).getMaphim());
+                xemphim(objects.get(position).getMovieId());
             }
         });
         txt_goiyTenphim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                xemphim(objects.get(position).getMaphim());
+                xemphim(objects.get(position).getMovieId());
             }
         });
         return view;

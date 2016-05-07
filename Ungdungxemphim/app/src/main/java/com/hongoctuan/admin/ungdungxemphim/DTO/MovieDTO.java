@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by admin on 5/3/2016.
  */
 public class MovieDTO implements Serializable {
-    public String getMaphim() {
+    public String getMovieId() {
         return maphim;
     }
 

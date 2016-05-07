@@ -10,21 +10,6 @@ public class CommentDTO {
     String commentId;
 
     public String getCommentId() {
-<<<<<<< HEAD:Ungdungxemphim/app/src/main/java/com/hongoctuan/admin/ungdungxemphim/DTO/CommentDTO.java
-        return mabinhluan;
-    }
-
-    public void setCommentId(String mabinhluan) {
-        this.mabinhluan = mabinhluan;
-    }
-
-    public String getCommenter() {
-        return nguoibinhluan;
-    }
-
-    public void setCommenter(String nguoibinhluan) {
-        this.nguoibinhluan = nguoibinhluan;
-=======
         return commentId;
     }
 
@@ -38,10 +23,7 @@ public class CommentDTO {
 
     public void setCommenter(String commenter) {
         this.commenter = commenter;
->>>>>>> origin/master:Ungdungxemphim/app/src/main/java/com/hongoctuan/admin/ungdungxemphim/DTO/CommentDTO.java
     }
-
-
 
     public String getIcon() {
         return icon;

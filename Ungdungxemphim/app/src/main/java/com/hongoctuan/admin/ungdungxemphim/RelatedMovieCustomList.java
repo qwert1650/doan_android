@@ -35,9 +35,9 @@ public class RelatedMovieCustomList extends ArrayAdapter<MovieDTO> {
         ImageView iv_goiyIcon = (ImageView) view.findViewById(R.id.iv_goiyIcon);
         TextView txt_goiyNoidung = (TextView) view.findViewById(R.id.txt_goiyNoidung);
 
-        String htmlDienvien="<b><u>Diễn viên:</u></b>" +" "+ objects.get(position).getActorName();
+        String htmlDienvien="<b><u>Diễn viên:</u></b>" +" "+ objects.get(position).getActor();
         txt_goiyDienvien.setText(Html.fromHtml(htmlDienvien));
-        String htmlNoidung="<b><u>Tóm Tắt:</u></b>" +" "+ objects.get(position).getMovieSummary().substring(0,70)+"...";;
+        String htmlNoidung="<b><u>Tóm Tắt:</u></b>" +" "+ objects.get(position).getMovieSumary().substring(0,70)+"...";;
         txt_goiyNoidung.setText(Html.fromHtml(htmlNoidung));
         txt_goiyTenphim.setText(objects.get(position).getMovieName());
         int maphim = context.getResources().getIdentifier("com.hongoctuan.admin.ungdungxemphim:drawable/" + objects.get(position).getMovieId(), null, null);

@@ -43,11 +43,7 @@ public class WatchMovieBUS extends YouTubeBaseActivity implements YouTubePlayer.
         lv_goiyPhim = (ListView) findViewById(R.id.lv_goiyPhim);
         MovieDTO phim = (MovieDTO) packageFromCaller.getSerializable("maphim");
         db = new DatabaseHelper(this);
-<<<<<<< HEAD
-        list_goiyPhim = db.getListPhimGoiY("hd",phim.getMaphim());
-=======
         list_goiyPhim = db.getListPhimGoiY("hd",phim.getMovieId());
->>>>>>> origin/master
         VIDEO_ID = phim.getMovieUrl();
         videoPlayer = (YouTubePlayerView) findViewById(R.id.youtube_player);
         videoPlayer.initialize(API_KEY, this);

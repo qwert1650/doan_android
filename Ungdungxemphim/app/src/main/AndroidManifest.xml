@@ -18,15 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MovieDetail" />
-<<<<<<< HEAD
         <!--<activity android:name=".CommentCustomList" />-->
         <activity android:name=".BUS.WatchMovieBUS" />
-        <!--<activity android:name=".BUS.RelatedMovieCustomList" /> -->
-=======
-        <activity android:name=".CommentCustomList" />
-        <activity android:name=".BUS.WatchMovieBUS" />
-        <activity android:name=".RelatedMovieCustomList"></activity>
->>>>>>> origin/master
+        <!--<activity android:name=".RelatedMovieCustomList"></activity>-->
     </application>
 
 </manifest>
