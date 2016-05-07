@@ -2,23 +2,19 @@ package com.hongoctuan.admin.ungdungxemphim.BUS;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
-import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHandler;
-import com.hongoctuan.admin.ungdungxemphim.DTO.PhimDTO;
+import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHelper;
+import com.hongoctuan.admin.ungdungxemphim.DTO.MovieDTO;
 import com.hongoctuan.admin.ungdungxemphim.R;
+import com.hongoctuan.admin.ungdungxemphim.RelatedMovieCustomList;
 
 import java.util.ArrayList;
 
@@ -32,8 +28,8 @@ public class WatchMovieBUS extends YouTubeBaseActivity implements YouTubePlayer.
     int trangthaiLike = 0;
     int trangthaiUnlike = 0;
     ListView lv_goiyPhim;
-    DatabaseHandler db;
-    ArrayList<PhimDTO> list_goiyPhim;
+    DatabaseHelper db;
+    ArrayList<MovieDTO> list_goiyPhim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +41,13 @@ public class WatchMovieBUS extends YouTubeBaseActivity implements YouTubePlayer.
         txt_like = (TextView) findViewById(R.id.txt_like);
         txt_unlike = (TextView) findViewById(R.id.txt_unlike);
         lv_goiyPhim = (ListView) findViewById(R.id.lv_goiyPhim);
-        PhimDTO phim = (PhimDTO) packageFromCaller.getSerializable("maphim");
-        db = new DatabaseHandler(this);
-        list_goiyPhim = db.getListPhimGoiY("hd",phim.getMaphim());
-        VIDEO_ID = phim.getUrl();
+        MovieDTO phim = (MovieDTO) packageFromCaller.getSerializable("maphim");
+        db = new DatabaseHelper(this);
+        list_goiyPhim = db.getListPhimGoiY("hd",phim.getMovieId());
+        VIDEO_ID = phim.getMovieUrl();
         videoPlayer = (YouTubePlayerView) findViewById(R.id.youtube_player);
         videoPlayer.initialize(API_KEY, this);
-        txt_watchTenphim.setText(phim.getTenphim());
+        txt_watchTenphim.setText(phim.getMovieName());
         iv_like.setImageResource(R.drawable.ic_like);
         iv_unlike.setImageResource(R.drawable.ic_unlike);
         iv_like.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +87,7 @@ public class WatchMovieBUS extends YouTubeBaseActivity implements YouTubePlayer.
                 }
             }
         });
-        listGoiYPhim_Custom adapter = new listGoiYPhim_Custom(this,R.layout.activity_list_goi_yphim__custom,list_goiyPhim);
+        RelatedMovieCustomList adapter = new RelatedMovieCustomList(this,R.layout.activity_list_goi_yphim__custom,list_goiyPhim);
         lv_goiyPhim.setAdapter(adapter);
 
     }

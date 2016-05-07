@@ -2,7 +2,6 @@ package com.hongoctuan.admin.ungdungxemphim.BUS;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.hongoctuan.admin.ungdungxemphim.DTO.AccountDTO;
 import com.hongoctuan.admin.ungdungxemphim.View.loginLayout;
@@ -41,12 +40,12 @@ public class RegisterAccountBUS extends AsyncTask<AccountDTO, Void, String> {
         httpPost.setHeader("content-type", "application/json");
         JSONObject data = new JSONObject();
         try {
-            data.put("name",user.getName().toString());
-            data.put("pass",user.getPass().toString());
-            data.put("cmnd",user.getPass().toString());
-            data.put("phone",user.getPhone().toString());
-            data.put("gioitinh",user.getGioitinh().toString());
-            data.put("tuoi",user.getTuoi().toString());
+            data.put("name",user.getAccountName().toString());
+            data.put("pass",user.getPassword().toString());
+            data.put("cmnd",user.getPassword().toString());
+            data.put("phone",user.getPhoneNumber().toString());
+            data.put("gioitinh",user.getSex().toString());
+            data.put("tuoi",user.getAge().toString());
             StringEntity entity = null;
             entity = new StringEntity(data.toString(), HTTP.UTF_8);
             httpPost.setEntity(entity);
@@ -69,6 +68,6 @@ public class RegisterAccountBUS extends AsyncTask<AccountDTO, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         loginLayout loginlayout = new loginLayout(context);
-        loginlayout.updateLayout(user.getName().toString());
+        loginlayout.updateLayout(user.getAccountName().toString());
     }
 }

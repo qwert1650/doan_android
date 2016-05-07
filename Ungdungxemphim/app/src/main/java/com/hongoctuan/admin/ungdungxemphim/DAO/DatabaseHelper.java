@@ -7,16 +7,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
-import com.hongoctuan.admin.ungdungxemphim.DTO.BinhluanDTO;
-import com.hongoctuan.admin.ungdungxemphim.DTO.PhimDTO;
+import com.hongoctuan.admin.ungdungxemphim.DTO.CommentDTO;
+import com.hongoctuan.admin.ungdungxemphim.DTO.MovieDTO;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by admin on 5/3/2016.
  */
-public class DatabaseHandler extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DATABASE_NAME = "ungdungxemphim";
     private static int DATABASE_VERSION = 1;
@@ -24,62 +23,62 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static String TABLE_BINHLUAN = "binhluan";
     Context context;
 
-    public DatabaseHandler(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
         //insertData();
     }
 
-    public PhimDTO getPhim(String maphim){
-        PhimDTO phim = new PhimDTO();
+    public MovieDTO getPhim(String maphim){
+        MovieDTO phim = new MovieDTO();
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "select * from " + TABLE_PHIM +" where id = '"+maphim+"'";
 
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
-        phim.setMaphim(cursor.getString(0));
-        phim.setTenphim(cursor.getString(1));
-        phim.setDaodien(cursor.getString(2));
-        phim.setDienvien(cursor.getString(3));
-        phim.setDanhgia(cursor.getString(4));
-        phim.setTomtat(cursor.getString(5));
-        phim.setTheloai(cursor.getString(6));
-        phim.setUrl(cursor.getString(7));
+        phim.setMovieId(cursor.getString(0));
+        phim.setMovieName(cursor.getString(1));
+        phim.setDirectorName(cursor.getString(2));
+        phim.setActorName(cursor.getString(3));
+        phim.setRateString(cursor.getString(4));
+        phim.setMovieSummary(cursor.getString(5));
+        phim.setCategory(cursor.getString(6));
+        phim.setMovieUrl(cursor.getString(7));
         db.close();
         return phim;
     }
-    public ArrayList<PhimDTO> getListPhimGoiY(String theloai, String maphim){
-        ArrayList<PhimDTO> list = new ArrayList<PhimDTO>();
+    public ArrayList<MovieDTO> getListPhimGoiY(String theloai, String maphim){
+        ArrayList<MovieDTO> list = new ArrayList<MovieDTO>();
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "select * from " + TABLE_PHIM +" where id != '"+maphim+"' and theloai = '" + theloai +"'";
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
-            PhimDTO phim = new PhimDTO();
-            phim.setMaphim(cursor.getString(0));
-            phim.setTenphim(cursor.getString(1));
-            phim.setDaodien(cursor.getString(2));
-            phim.setDienvien(cursor.getString(3));
-            phim.setDanhgia(cursor.getString(4));
-            phim.setTomtat(cursor.getString(5));
-            phim.setTheloai(cursor.getString(6));
-            phim.setUrl(cursor.getString(7));
+            MovieDTO phim = new MovieDTO();
+            phim.setMovieId(cursor.getString(0));
+            phim.setMovieName(cursor.getString(1));
+            phim.setDirectorName(cursor.getString(2));
+            phim.setActorName(cursor.getString(3));
+            phim.setRateString(cursor.getString(4));
+            phim.setMovieSummary(cursor.getString(5));
+            phim.setCategory(cursor.getString(6));
+            phim.setMovieUrl(cursor.getString(7));
             list.add(phim);
             cursor.moveToNext();
         }
         db.close();
         return list;
     }
-    public ArrayList<BinhluanDTO> getBinhluan(String maphim){
-        ArrayList<BinhluanDTO> list = new ArrayList<>();
+    public ArrayList<CommentDTO> getBinhluan(String maphim){
+        ArrayList<CommentDTO> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "select * from " + TABLE_BINHLUAN +" where maphim = '"+maphim+"'";
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
-            BinhluanDTO binhluan = new BinhluanDTO();
-            binhluan.setMabinhluan(cursor.getString(0));
-            binhluan.setNguoibinhluan(cursor.getString(2));
+            CommentDTO binhluan = new CommentDTO();
+            binhluan.setCommentId(cursor.getString(0));
+            binhluan.setCommenter(cursor.getString(2));
             binhluan.setContent(cursor.getString(3));
             list.add(binhluan);
             cursor.moveToNext();

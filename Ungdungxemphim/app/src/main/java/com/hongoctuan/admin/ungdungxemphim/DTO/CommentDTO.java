@@ -3,26 +3,26 @@ package com.hongoctuan.admin.ungdungxemphim.DTO;
 /**
  * Created by admin on 5/3/2016.
  */
-public class BinhluanDTO {
+public class CommentDTO {
     String icon;
     String content;
-    String nguoibinhluan;
-    String mabinhluan;
+    String commenter;
+    String commentId;
 
-    public String getMabinhluan() {
-        return mabinhluan;
+    public String getCommentId() {
+        return commentId;
     }
 
-    public void setMabinhluan(String mabinhluan) {
-        this.mabinhluan = mabinhluan;
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
     }
 
-    public String getNguoibinhluan() {
-        return nguoibinhluan;
+    public String getCommenter() {
+        return commenter;
     }
 
-    public void setNguoibinhluan(String nguoibinhluan) {
-        this.nguoibinhluan = nguoibinhluan;
+    public void setCommenter(String commenter) {
+        this.commenter = commenter;
     }
 
 

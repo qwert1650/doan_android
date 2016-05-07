@@ -2,7 +2,6 @@ package com.hongoctuan.admin.ungdungxemphim;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
@@ -21,7 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHandler;
+import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHelper;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
-    DatabaseHandler db;
+    DatabaseHelper db;
 
     ArrayList<String> dataArray_right=new ArrayList<String>();
     ArrayList<Object> objectArray_right=new ArrayList<Object>();
@@ -43,8 +42,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     ImageButton imgLeftMenu,imgRightMenu;
 
 
-    ListItemsAdapter_Left Left_Adapter;
-    ListItemsAdapter_Right Right_Adapter;
+    ListItemsAdapterLeft Left_Adapter;
+    ListItemsAdapterRight Right_Adapter;
 
     //slide show
     private static ViewPager mPager;
@@ -120,7 +119,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         Fill_RightList();
         RefreshListView();
         init();
-        db = new DatabaseHandler(this);
+        db = new DatabaseHelper(this);
     }
 
     // Filling the ArrayLists
@@ -133,7 +132,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             objectArray_left.add(obj);
         }
         Log.d("object array", "" + objectArray_left.size());
-        Left_Adapter = new ListItemsAdapter_Left(this,objectArray_left, 1,dataArray_left,menu);
+        Left_Adapter = new ListItemsAdapterLeft(this,objectArray_left, 1,dataArray_left,menu);
         mDrawerList_Left.setAdapter(Left_Adapter);
 
         objectArray_right.clear();
@@ -142,7 +141,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             objectArray_right.add(obj);
         }
         Log.d("object array", "" + objectArray_right.size());
-        Right_Adapter = new ListItemsAdapter_Right(this,objectArray_right, 1,dataArray_right);
+        Right_Adapter = new ListItemsAdapterRight(this,objectArray_right, 1,dataArray_right);
         mDrawerList_Right.setAdapter(Right_Adapter);
     }
     public void Fill_LeftList()
@@ -164,7 +163,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         for(int i=0;i<IMAGES.length;i++)
             ImagesArray.add(IMAGES[i]);
         mPager = (ViewPager) findViewById(R.id.pager);
-        mPager.setAdapter(new SlidingImage_Adapter(MainActivity.this,ImagesArray));
+        mPager.setAdapter(new SlidingImageAdapter(MainActivity.this,ImagesArray));
         CirclePageIndicator indicator = (CirclePageIndicator) findViewById(R.id.indicator);
         indicator.setViewPager(mPager);
         final float density = getResources().getDisplayMetrics().density;

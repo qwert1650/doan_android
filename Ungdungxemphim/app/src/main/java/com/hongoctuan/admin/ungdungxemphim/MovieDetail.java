@@ -10,28 +10,25 @@ import android.os.Bundle;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Html;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hongoctuan.admin.ungdungxemphim.BUS.WatchMovieBUS;
-import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHandler;
-import com.hongoctuan.admin.ungdungxemphim.DTO.BinhluanDTO;
-import com.hongoctuan.admin.ungdungxemphim.DTO.PhimDTO;
+import com.hongoctuan.admin.ungdungxemphim.DAO.DatabaseHelper;
+import com.hongoctuan.admin.ungdungxemphim.DTO.CommentDTO;
+import com.hongoctuan.admin.ungdungxemphim.DTO.MovieDTO;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MovieDetail extends Activity {
-    DatabaseHandler db;
-    PhimDTO phim;
+    DatabaseHelper db;
+    MovieDTO phim;
     TextView txt_tenphim, txt_daodien, txt_dienvien, txt_noidungphim;
     ImageView iv_phim;
-    ArrayList<BinhluanDTO> list_binhluan;
+    ArrayList<CommentDTO> list_binhluan;
     ListView lv_binhluan;
     Button btn_xemPhim;
     @Override
@@ -41,10 +38,10 @@ public class MovieDetail extends Activity {
         Intent callerIntent=getIntent();
         Bundle packageFromCaller= callerIntent.getBundleExtra("myData");
         String id = packageFromCaller.getString("id");
-        db = new DatabaseHandler(this);
-        phim = new PhimDTO();
+        db = new DatabaseHelper(this);
+        phim = new MovieDTO();
         phim = db.getPhim(id);
-        list_binhluan = new ArrayList<BinhluanDTO>();
+        list_binhluan = new ArrayList<CommentDTO>();
         list_binhluan = db.getBinhluan(id);
 
         txt_tenphim = (TextView) findViewById(R.id.txt_tenphim);
@@ -61,21 +58,21 @@ public class MovieDetail extends Activity {
         Drawable progress = ratingBar.getProgressDrawable();
         DrawableCompat.setTint(progress, Color.WHITE);
 
-        txt_tenphim.setText(phim.getTenphim());
-        String htmlDaodien="<b><u>Đạo diễn:</u></b>" +" "+ phim.getDaodien();
+        txt_tenphim.setText(phim.getMovieName());
+        String htmlDaodien="<b><u>Đạo diễn:</u></b>" +" "+ phim.getDirectorName();
         txt_daodien.setText(Html.fromHtml(htmlDaodien));
-        String htmlDienvien="<b><u>Diễn viên:</u></b>"+" "+ phim.getDienvien();
+        String htmlDienvien="<b><u>Diễn viên:</u></b>"+" "+ phim.getActorName();
         txt_dienvien.setText(Html.fromHtml(htmlDienvien));
         int maphim = getResources().getIdentifier("com.hongoctuan.admin.ungdungxemphim:drawable/" + id, null, null);
         iv_phim.setImageResource(maphim);
-        txt_noidungphim.setText(phim.getTomtat());
-        BinhLuan_CustomList binhluanAdapter = new BinhLuan_CustomList(this,R.layout.activity_binh_luan__custom_list,list_binhluan);
+        txt_noidungphim.setText(phim.getMovieSummary());
+        CommentCustomList binhluanAdapter = new CommentCustomList(this,R.layout.activity_binh_luan__custom_list,list_binhluan);
         lv_binhluan.setAdapter(binhluanAdapter);
 
         btn_xemPhim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = phim.getUrl();
+                String url = phim.getMovieUrl();
                 Intent intent = new Intent(getApplicationContext(), WatchMovieBUS.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("maphim", phim);

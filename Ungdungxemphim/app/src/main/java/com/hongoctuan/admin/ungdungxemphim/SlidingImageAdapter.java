@@ -13,11 +13,11 @@ import java.util.ArrayList;
 /**
  * Created by admin on 4/18/2016.
  */
-public class SlidingImage_Adapter extends PagerAdapter {
+public class SlidingImageAdapter extends PagerAdapter {
     private ArrayList<Integer> IMAGES;
     private LayoutInflater inflater;
     private Context context;
-    public SlidingImage_Adapter(Context context, ArrayList<Integer> IMAGES) {
+    public SlidingImageAdapter(Context context, ArrayList<Integer> IMAGES) {
         this.context = context;
         this.IMAGES=IMAGES;
         inflater = LayoutInflater.from(context);

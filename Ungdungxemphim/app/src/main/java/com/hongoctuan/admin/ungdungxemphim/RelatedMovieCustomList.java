@@ -1,9 +1,7 @@
-package com.hongoctuan.admin.ungdungxemphim.BUS;
+package com.hongoctuan.admin.ungdungxemphim;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -13,16 +11,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hongoctuan.admin.ungdungxemphim.DTO.PhimDTO;
+import com.hongoctuan.admin.ungdungxemphim.DTO.MovieDTO;
 import com.hongoctuan.admin.ungdungxemphim.MovieDetail;
 import com.hongoctuan.admin.ungdungxemphim.R;
 
 import java.util.ArrayList;
 
-public class listGoiYPhim_Custom extends ArrayAdapter<PhimDTO> {
+public class RelatedMovieCustomList extends ArrayAdapter<MovieDTO> {
     Activity context;
-    ArrayList<PhimDTO> objects;
-    public listGoiYPhim_Custom(Activity context, int resource, ArrayList<PhimDTO> objects) {
+    ArrayList<MovieDTO> objects;
+    public RelatedMovieCustomList(Activity context, int resource, ArrayList<MovieDTO> objects) {
         super(context, resource, objects);
         this.objects = objects;
         this.context = context;
@@ -37,23 +35,23 @@ public class listGoiYPhim_Custom extends ArrayAdapter<PhimDTO> {
         ImageView iv_goiyIcon = (ImageView) view.findViewById(R.id.iv_goiyIcon);
         TextView txt_goiyNoidung = (TextView) view.findViewById(R.id.txt_goiyNoidung);
 
-        String htmlDienvien="<b><u>Diễn viên:</u></b>" +" "+ objects.get(position).getDienvien();
+        String htmlDienvien="<b><u>Diễn viên:</u></b>" +" "+ objects.get(position).getActorName();
         txt_goiyDienvien.setText(Html.fromHtml(htmlDienvien));
-        String htmlNoidung="<b><u>Tóm Tắt:</u></b>" +" "+ objects.get(position).getTomtat().substring(0,70)+"...";;
+        String htmlNoidung="<b><u>Tóm Tắt:</u></b>" +" "+ objects.get(position).getMovieSummary().substring(0,70)+"...";;
         txt_goiyNoidung.setText(Html.fromHtml(htmlNoidung));
-        txt_goiyTenphim.setText(objects.get(position).getTenphim());
-        int maphim = context.getResources().getIdentifier("com.hongoctuan.admin.ungdungxemphim:drawable/" + objects.get(position).getMaphim(), null, null);
+        txt_goiyTenphim.setText(objects.get(position).getMovieName());
+        int maphim = context.getResources().getIdentifier("com.hongoctuan.admin.ungdungxemphim:drawable/" + objects.get(position).getMovieId(), null, null);
         iv_goiyIcon.setImageResource(maphim);
         iv_goiyIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                xemphim(objects.get(position).getMaphim());
+                xemphim(objects.get(position).getMovieId());
             }
         });
         txt_goiyTenphim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                xemphim(objects.get(position).getMaphim());
+                xemphim(objects.get(position).getMovieId());
             }
         });
         return view;

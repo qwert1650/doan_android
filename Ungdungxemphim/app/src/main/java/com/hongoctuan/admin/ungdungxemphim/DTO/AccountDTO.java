@@ -5,52 +5,52 @@ package com.hongoctuan.admin.ungdungxemphim.DTO;
  */
 public class AccountDTO {
 
-    public String getTuoi() {
-        return tuoi;
+    public String getAge() {
+        return age;
     }
 
-    public void setTuoi(String tuoi) {
-        this.tuoi = tuoi;
+    public void setAge(String age) {
+        this.age = age;
     }
 
-    public String getGioitinh() {
-        return gioitinh;
+    public String getSex() {
+        return sex;
     }
 
-    public void setGioitinh(String gioitinh) {
-        this.gioitinh = gioitinh;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getCmnd() {
-        return cmnd;
+    public String getIdNumber() {
+        return idNumber;
     }
 
-    public void setCmnd(String cmnd) {
-        this.cmnd = cmnd;
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
     public int getId() {
@@ -61,10 +61,10 @@ public class AccountDTO {
         this.id = id;
     }
     int id;
-    String name;
-    String pass;
-    String cmnd;
-    String phone;
-    String gioitinh;
-    String tuoi;
+    String accountName;
+    String password;
+    String idNumber;
+    String phoneNumber;
+    String sex;
+    String age;
 }

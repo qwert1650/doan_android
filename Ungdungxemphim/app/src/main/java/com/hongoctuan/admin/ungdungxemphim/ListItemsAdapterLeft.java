@@ -14,14 +14,14 @@ import java.util.List;
 /**
  * Created by admin on 4/16/2016.
  */
-public class ListItemsAdapter_Left extends ArrayAdapter<Object>
+public class ListItemsAdapterLeft extends ArrayAdapter<Object>
 {
     ViewHolder holder1;
     Activity contextCha;
     ArrayList<String> dataArray_left;
     Integer[] menu;
 
-    public ListItemsAdapter_Left(Activity contextCha,List<Object> items, int x, ArrayList<String> dataArray_left, Integer[] menu) {
+    public ListItemsAdapterLeft(Activity contextCha, List<Object> items, int x, ArrayList<String> dataArray_left, Integer[] menu) {
         // TODO Auto-generated constructor stub
         super(contextCha, android.R.layout.simple_list_item_single_choice, items);
         this.contextCha = contextCha;

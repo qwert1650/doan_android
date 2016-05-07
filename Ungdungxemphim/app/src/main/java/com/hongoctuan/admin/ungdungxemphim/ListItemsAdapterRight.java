@@ -20,13 +20,13 @@ import java.util.List;
 /**
  * Created by admin on 4/16/2016.
  */
-public class ListItemsAdapter_Right extends ArrayAdapter<Object>
+public class ListItemsAdapterRight extends ArrayAdapter<Object>
 {
     Activity contextCha;
     ArrayList<String> dataArray_right;
 
 
-    public ListItemsAdapter_Right(Activity contextCha,List<Object> items, int x,ArrayList<String> dataArray_right) {
+    public ListItemsAdapterRight(Activity contextCha, List<Object> items, int x, ArrayList<String> dataArray_right) {
         // TODO Auto-generated constructor stub
         super(contextCha, android.R.layout.simple_list_item_single_choice, items);
         this.contextCha = contextCha;
