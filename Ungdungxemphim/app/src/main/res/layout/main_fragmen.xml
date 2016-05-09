@@ -93,10 +93,11 @@
                                 android:id="@+id/iv_hd01" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
+                                android:layout_marginLeft="3dp"
+                                android:text="Biệt Đội Đánh..."
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_hd01" />
@@ -120,10 +121,11 @@
                                 android:id="@+id/iv_hd02" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Texti"
+                                android:layout_marginLeft="3dp"
+                                android:text="Biệt Đội Đánh..."
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_hd02" />
@@ -147,10 +149,11 @@
                                 android:id="@+id/iv_hd03" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Texti"
+                                android:layout_marginLeft="3dp"
+                                android:text="Fast Furious 6"
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_hd03" />
@@ -174,10 +177,11 @@
                                 android:id="@+id/iv_hd04" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
+                                android:layout_marginLeft="3dp"
+                                android:text="Fast Furious 7"
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_hd04" />
@@ -201,10 +205,11 @@
                                 android:id="@+id/iv_hd05" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Texti"
+                                android:layout_marginLeft="3dp"
+                                android:text="Fast Furious 8"
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_hd05" />
@@ -268,10 +273,11 @@
                                 android:id="@+id/iv_hh01" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
+                                android:layout_marginLeft="3dp"
+                                android:text="Frozen"
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_hh01" />
@@ -295,10 +301,11 @@
                                 android:id="@+id/iv_hh02" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
+                                android:layout_marginLeft="3dp"
+                                android:text="Jungle Book"
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_hh02" />
@@ -322,10 +329,11 @@
                                 android:id="@+id/iv_hh03" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
+                                android:layout_marginLeft="3dp"
+                                android:text="KungFu Panda 1"
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_hh03" />
@@ -349,11 +357,11 @@
                                 android:id="@+id/iv_hh04" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
-                                android:textColor="#FFFFFF"
+                                android:layout_marginLeft="3dp"
+                                android:text="KungFu Panda 2"  android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_hh04" />
                         </LinearLayout>
@@ -376,11 +384,11 @@
                                 android:id="@+id/iv_hh05" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
-                                android:textColor="#FFFFFF"
+                                android:layout_marginLeft="3dp"
+                                android:text="KungFu Panda 3"  android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_hh05" />
                         </LinearLayout>
@@ -442,10 +450,11 @@
                                 android:id="@+id/iv_gt01" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
+                                android:layout_marginLeft="3dp"
+                                android:text="Transformers 1"
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_gt01" />
@@ -469,10 +478,11 @@
                                 android:id="@+id/iv_gt02" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
+                                android:layout_marginLeft="3dp"
+                                android:text="Transformers 2"
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_gt02" />
@@ -496,10 +506,11 @@
                                 android:id="@+id/iv_gt03" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
+                                android:layout_marginLeft="3dp"
+                                android:text="Transformers 3"
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_gt03" />
@@ -524,10 +535,11 @@
                                 android:clickable="false" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
+                                android:layout_marginLeft="3dp"
+                                android:text="Transformers 4"
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_gt04" />
@@ -554,7 +566,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:text="New Text"
+                                android:layout_marginLeft="3dp"
+                                android:text="Transformers 5"
                                 android:textColor="#FFFFFF"
                                 android:layout_gravity="center_horizontal"
                                 android:id="@+id/txt_gt05" />

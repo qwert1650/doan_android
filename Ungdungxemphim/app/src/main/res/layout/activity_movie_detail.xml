@@ -155,18 +155,27 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="6"
                     android:src="@drawable/ic_user"
                     android:id="@+id/imageView2" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="3"
                     android:hint="Bình luận"
                     android:textColor="#FFFFFF"
                     android:textColorHint="#FFFFFF"
-                    android:id="@+id/editText" />
+                    android:id="@+id/editComment" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:text="Bình Luận"
+                    android:id="@+id/btnComment" />
 
             </LinearLayout>
 

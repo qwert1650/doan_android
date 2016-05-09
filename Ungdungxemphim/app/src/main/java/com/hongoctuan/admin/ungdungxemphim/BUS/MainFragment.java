@@ -144,8 +144,36 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         String id="";
         if(v.getId() == iv_hd01.getId())
             id = "hd01";
-        if(v.getId() == iv_hd02.getId())
+        else if(v.getId() == iv_hd02.getId())
             id = "hd02";
+        else if(v.getId() == iv_hd03.getId())
+            id = "hd03";
+        else if(v.getId() == iv_hd04.getId())
+            id = "hd04";
+        else if(v.getId() == iv_hd05.getId())
+            id = "hd05";
+        else if(v.getId() == iv_hh01.getId())
+            id = "hh01";
+        else if(v.getId() == iv_hh02.getId())
+            id = "hh02";
+        else if(v.getId() == iv_hh03.getId())
+            id = "hh03";
+        else if(v.getId() == iv_hh04.getId())
+            id = "hh04";
+        else if(v.getId() == iv_hh05.getId())
+            id = "hh05";
+        else if(v.getId() == iv_gt01.getId())
+            id = "gt01";
+        else if(v.getId() == iv_gt02.getId())
+            id = "gt02";
+        else if(v.getId() == iv_gt03.getId())
+            id = "gt03";
+        else if(v.getId() == iv_gt04.getId())
+            id = "gt04";
+        else if(v.getId() == iv_gt05.getId())
+            id = "gt05";
+
+
         Intent intent = new Intent(context, MovieDetail.class);
         Bundle bundle = new Bundle();
         bundle.putString("id", id);

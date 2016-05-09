@@ -111,7 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<CommentDTO> getBinhluan(String maphim){
         ArrayList<CommentDTO> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "select * from " + TABLE_BINHLUAN +" where maphim = '"+maphim+"'";
+        String sql = "select * from " + TABLE_BINHLUAN +" where maphim = '"+maphim+"'  ORDER BY rowid DESC";
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
@@ -145,6 +145,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         db.close();
         return list;
+    }
+
+    public void insertComment(String MovieId,String UserComment, String Content){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("maphim", MovieId);
+        values.put("nguoibinhluan", UserComment);
+        values.put("noidung", Content);
+        if(db.insert(TABLE_BINHLUAN, null, values)!= -1){
+        }else{
+            Toast.makeText(context, "Lỗi kết nối!", Toast.LENGTH_SHORT).show();
+        }
+        db.close();
     }
 
     public void insertData(){
