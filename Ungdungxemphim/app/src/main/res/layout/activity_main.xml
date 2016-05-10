@@ -13,17 +13,6 @@
         android:layout_width="match_parent"
         android:id="@+id/re_main"
         android:layout_height="wrap_content">
-
-        <!--<EditText-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/rounded_edittext"-->
-            <!--android:hint="Tìm Kiếm"-->
-            <!--android:paddingLeft="10sp"-->
-            <!--android:lines="1"-->
-            <!--android:textColor="@color/colorBlack"-->
-            <!--android:paddingRight="50dp"-->
-            <!--android:id="@+id/edit_search" />-->
         <AutoCompleteTextView
             android:id="@+id/autoCompleteSearch"
             android:layout_width="match_parent"

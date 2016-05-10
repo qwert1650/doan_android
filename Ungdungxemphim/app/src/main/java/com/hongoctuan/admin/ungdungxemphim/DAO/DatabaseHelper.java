@@ -72,6 +72,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    public ArrayList<MovieDTO> getTypeMovie(String theloai){
+        ArrayList<MovieDTO> list = new ArrayList<MovieDTO>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "select * from " + TABLE_PHIM +" where theloai = '" + theloai +"'";
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            MovieDTO phim = new MovieDTO();
+            phim.setMovieId(cursor.getString(0));
+            phim.setMovieName(cursor.getString(1));
+            phim.setDirectorName(cursor.getString(2));
+            phim.setActor(cursor.getString(3));
+            phim.setRateString(cursor.getString(4));
+            phim.setMovieSumary(cursor.getString(5));
+            phim.setCategory(cursor.getString(6));
+            phim.setMovieUrl(cursor.getString(7));
+            list.add(phim);
+            cursor.moveToNext();
+        }
+        db.close();
+        return list;
+    }
+
     public ArrayList<MovieDTO> getSearchPhim (String tenphim){
         ArrayList<MovieDTO> list = new ArrayList<MovieDTO>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -199,21 +222,96 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql="CREATE TABLE binhluan ("+
-                "id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL,"+
-                "maphim TEXT, nguoibinhluan TEXT, noidung TEXT)";
+        String sql="CREATE TABLE binhluan (id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL,maphim TEXT, nguoibinhluan TEXT, noidung TEXT)";
         db.execSQL(sql);
         sql="CREATE TABLE lichsusearch (keyword TEXT PRIMARY KEY)";
         db.execSQL(sql);
-        sql="CREATE TABLE phim (";
-        sql+="id TEXT primary key,";
-        sql+="tenphim TEXT,";
-        sql+="daodien TEXT,";
-        sql+="dienvien TEXT,";
-        sql+="danhgia TEXT,";
-        sql+="tomtat TEXT,";
-        sql+="theloai TEXT,";
-        sql+="url TEXT)";
+        sql="CREATE TABLE phim (id TEXT primary key,tenphim TEXT,daodien TEXT,dienvien TEXT,danhgia TEXT,tomtat TEXT,theloai TEXT,url TEXT)";
+        db.execSQL(sql);
+
+        Data dt = new Data();
+        sql = dt.createDataComment1();
+        db.execSQL(sql);
+        sql = dt.createDataComment2();
+        db.execSQL(sql);
+        sql = dt.createDataComment3();
+        db.execSQL(sql);
+        sql = dt.createDataComment4();
+        db.execSQL(sql);
+        sql = dt.createDataComment5();
+        db.execSQL(sql);
+        sql = dt.createDataComment6();
+        db.execSQL(sql);
+        sql = dt.createDataComment7();
+        db.execSQL(sql);
+        sql = dt.createDataComment8();
+        db.execSQL(sql);
+        sql = dt.createDataComment9();
+        db.execSQL(sql);
+        sql = dt.createDataComment10();
+        db.execSQL(sql);
+        sql = dt.createDataComment11();
+        db.execSQL(sql);
+        sql = dt.createDataComment12();
+        db.execSQL(sql);
+        sql = dt.createDataComment13();
+        db.execSQL(sql);
+        sql = dt.createDataComment14();
+        db.execSQL(sql);
+        sql = dt.createDataComment15();
+        db.execSQL(sql);
+        sql = dt.createDataComment16();
+        db.execSQL(sql);
+        sql = dt.createDataComment17();
+        db.execSQL(sql);
+        sql = dt.createDataComment18();
+        db.execSQL(sql);
+        sql = dt.createDataComment19();
+        db.execSQL(sql);
+        sql = dt.createDataComment20();
+        db.execSQL(sql);
+        sql = dt.createDataComment21();
+        db.execSQL(sql);
+        sql = dt.createDataComment22();
+        db.execSQL(sql);
+        sql = dt.createDataComment23();
+        db.execSQL(sql);
+        sql = dt.createDataComment24();
+        db.execSQL(sql);
+        sql = dt.createDataComment25();
+        db.execSQL(sql);
+        sql = dt.createDataComment26();
+        db.execSQL(sql);
+
+        sql = dt.createDataMovie1();
+        db.execSQL(sql);
+        sql = dt.createDataMovie2();
+        db.execSQL(sql);
+        sql = dt.createDataMovie3();
+        db.execSQL(sql);
+        sql = dt.createDataMovie4();
+        db.execSQL(sql);
+        sql = dt.createDataMovie5();
+        db.execSQL(sql);
+        sql = dt.createDataMovie6();
+        db.execSQL(sql);
+        sql = dt.createDataMovie7();
+        db.execSQL(sql);
+        sql = dt.createDataMovie8();
+        db.execSQL(sql);
+        sql = dt.createDataMovie9();
+        db.execSQL(sql);
+        sql = dt.createDataMovie10();
+        db.execSQL(sql);
+        sql = dt.createDataMovie11();
+        db.execSQL(sql);
+        sql = dt.createDataMovie12();
+        db.execSQL(sql);
+        sql = dt.createDataMovie13();
+        db.execSQL(sql);
+        sql = dt.createDataMovie14();
+        db.execSQL(sql);
+        sql = dt.createDataMovie15();
         db.execSQL(sql);
     }
 

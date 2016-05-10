@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.hongoctuan.admin.ungdungxemphim.MovieDetail;
 import com.hongoctuan.admin.ungdungxemphim.R;
 import com.hongoctuan.admin.ungdungxemphim.SlidingImageAdapter;
+import com.hongoctuan.admin.ungdungxemphim.View.TypeMovie;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import java.util.TimerTask;
 public class MainFragment extends Fragment implements View.OnClickListener{
     ImageView iv_hd01,iv_hd02,iv_hd03,iv_hd04,iv_hd05,iv_hh01,iv_hh02,iv_hh03,iv_hh04,iv_hh05,iv_gt01,iv_gt02,iv_gt03,iv_gt04,iv_gt05;
     TextView txt_hd01,txt_hd02,txt_hd03,txt_hd04,txt_hd05,txt_hh01,txt_hh02,txt_hh03,txt_hh04,txt_hh05,txt_gt01,txt_gt02,txt_gt03,txt_gt04,txt_gt05;
+    TextView txt_hdTatca,txt_hhTatca,txt_gtTatca;
     Activity context;
     private static final Integer[] IMAGES= {R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.five};
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
@@ -77,6 +79,9 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         txt_gt03 = (TextView) rootView.findViewById(R.id.txt_gt03);
         txt_gt04 = (TextView) rootView.findViewById(R.id.txt_gt04);
         txt_gt05 = (TextView) rootView.findViewById(R.id.txt_gt05);
+        txt_hdTatca = (TextView) rootView.findViewById(R.id.txt_hdTatca);
+        txt_hhTatca = (TextView) rootView.findViewById(R.id.txt_hhTatca);
+        txt_gtTatca = (TextView) rootView.findViewById(R.id.txt_gtTatca);
 
         iv_hd01.setOnClickListener(this);
         iv_hd02.setOnClickListener(this);
@@ -96,10 +101,32 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         iv_gt04.setOnClickListener(this);
         iv_gt05.setOnClickListener(this);
 
+        txt_hdTatca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadAllMovie("hd");
+            }
+        });
+
+        txt_hhTatca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadAllMovie("hh");
+            }
+        });
+
+        txt_gtTatca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadAllMovie("gt");
+            }
+        });
+
+
         for(int i = 0; i < IMAGES.length;i++)
             ImagesArray.add(IMAGES[i]);
         mPager = (ViewPager) rootView.findViewById(R.id.pager);
-        mPager.setAdapter(new SlidingImageAdapter(context,ImagesArray));
+        mPager.setAdapter(new SlidingImageAdapter(context, ImagesArray));
         CirclePageIndicator indicator = (CirclePageIndicator) rootView.findViewById(R.id.indicator);
         indicator.setViewPager(mPager);
         final float density = getResources().getDisplayMetrics().density;
@@ -172,11 +199,17 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             id = "gt04";
         else if(v.getId() == iv_gt05.getId())
             id = "gt05";
-
-
         Intent intent = new Intent(context, MovieDetail.class);
         Bundle bundle = new Bundle();
         bundle.putString("id", id);
+        intent.putExtra("myData",bundle);
+        startActivity(intent);
+    }
+
+    public void loadAllMovie(String maloai){
+        Intent intent = new Intent(context, TypeMovie.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("maloai", maloai);
         intent.putExtra("myData",bundle);
         startActivity(intent);
     }

@@ -18,9 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MovieDetail" />
-        <!--<activity android:name=".CommentCustomList" />-->
+        <!-- <activity android:name=".CommentCustomList" /> -->
         <activity android:name=".BUS.WatchMovieBUS" />
-        <!--<activity android:name=".RelatedMovieCustomList"></activity>-->
+        <!-- <activity android:name=".RelatedMovieCustomList"></activity> -->
+        <activity android:name=".View.TypeMovie"></activity>
     </application>
 
 </manifest>

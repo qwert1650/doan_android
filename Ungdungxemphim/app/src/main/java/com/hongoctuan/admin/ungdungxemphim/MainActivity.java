@@ -35,6 +35,8 @@ public class MainActivity extends ActionBarActivity{
     ArrayList<Object> objectArray_right=new ArrayList<Object>();
     ArrayList<String> dataArray_left=new ArrayList<String>();
     ArrayList<Object> objectArray_left=new ArrayList<Object>();
+    int flagMenuLeft =0;
+    int flagMenuRight = 0;
 
     Integer[] menu = {R.drawable.ic_home, R.drawable.ic_history};
     DrawerLayout mDrawerlayout;
@@ -94,14 +96,19 @@ public class MainActivity extends ActionBarActivity{
         getSupportActionBar().setCustomView(v);
 
         imgLeftMenu.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
                 if (mDrawerlayout.isDrawerOpen(mDrawerList_Right)) {
                     mDrawerlayout.closeDrawer(mDrawerList_Right);
                 }
-                mDrawerlayout.openDrawer(mDrawerList_Left);
+                if(flagMenuLeft == 0) {
+                    mDrawerlayout.openDrawer(mDrawerList_Left);
+                    flagMenuLeft = 1;
+                }else{
+                    mDrawerlayout.closeDrawer(mDrawerList_Left);
+                    flagMenuLeft = 0;
+                }
             }
         });
 
@@ -113,7 +120,14 @@ public class MainActivity extends ActionBarActivity{
                 if (mDrawerlayout.isDrawerOpen(mDrawerList_Left)) {
                     mDrawerlayout.closeDrawer(mDrawerList_Left);
                 }
-                mDrawerlayout.openDrawer(mDrawerList_Right);
+                if(flagMenuRight == 0) {
+                    mDrawerlayout.openDrawer(mDrawerList_Right);
+                    flagMenuRight = 1;
+                }else{
+                    mDrawerlayout.closeDrawer(mDrawerList_Right);
+                    flagMenuRight = 0;
+                }
+
             }
         });
 
@@ -126,7 +140,6 @@ public class MainActivity extends ActionBarActivity{
         Fill_LeftList();
         Fill_RightList();
         RefreshListView();
-        //init();
         db = new DatabaseHelper(this);
 
         iv_timkiem.setOnClickListener(new View.OnClickListener() {

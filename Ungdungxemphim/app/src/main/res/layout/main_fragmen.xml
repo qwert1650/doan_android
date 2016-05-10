@@ -62,7 +62,7 @@
                         android:layout_marginRight="10dp"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        android:id="@+id/textView6" />
+                        android:id="@+id/txt_hdTatca" />
                 </LinearLayout>
 
                 <HorizontalScrollView
@@ -242,7 +242,7 @@
                         android:layout_marginRight="10dp"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        android:id="@+id/textView19" />
+                        android:id="@+id/txt_hhTatca" />
                 </LinearLayout>
 
                 <HorizontalScrollView
@@ -419,7 +419,7 @@
                         android:layout_marginRight="10dp"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        android:id="@+id/textView21" />
+                        android:id="@+id/txt_gtTatca" />
                 </LinearLayout>
 
                 <HorizontalScrollView
