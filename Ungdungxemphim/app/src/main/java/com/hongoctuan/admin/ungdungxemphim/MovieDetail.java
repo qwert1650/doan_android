@@ -59,7 +59,6 @@ public class MovieDetail extends Activity {
         btn_xemPhim = (Button) findViewById(R.id.btn_xemphim);
         btnComment = (Button) findViewById(R.id.btnComment);
         editComment = (EditText) findViewById(R.id.editComment);
-
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
@@ -112,6 +111,7 @@ public class MovieDetail extends Activity {
                     list_binhluan.add(0,temp);
                 }
                 binhluanAdapter.notifyDataSetChanged();
+                editComment.setText("");
             }
         });
     }

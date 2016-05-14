@@ -24,25 +24,5 @@
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/imgLeftMenu"
             android:background="@drawable/user_login" />
-
-        <!--<TextView-->
-            <!--android:id="@+id/txtLeftMenu"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_toRightOf="@+id/imgLeftMenu"-->
-            <!--android:text="Left Menu"-->
-            <!--android:textColor="#FFF" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/txtRightMenu"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignBaseline="@+id/txtLeftMenu"-->
-            <!--android:layout_alignBottom="@+id/txtLeftMenu"-->
-            <!--android:layout_toLeftOf="@+id/imgRightMenu"-->
-            <!--android:text="Right Menu"-->
-            <!--android:textColor="#FFF"  />-->
-
     </RelativeLayout>
 </RelativeLayout>

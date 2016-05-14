@@ -313,6 +313,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
         sql = dt.createDataMovie15();
         db.execSQL(sql);
+        sql = dt.createDataMovie16();
+        db.execSQL(sql);
+        sql = dt.createDataMovie17();
+        db.execSQL(sql);
+        sql = dt.createDataMovie18();
+        db.execSQL(sql);
+        sql = dt.createDataMovie19();
+        db.execSQL(sql);
+        sql = dt.createDataMovie20();
+        db.execSQL(sql);
+        sql = dt.createDataMovie21();
+        db.execSQL(sql);
+        sql = dt.createDataMovie22();
+        db.execSQL(sql);
+        sql = dt.createDataMovie23();
+        db.execSQL(sql);
+        sql = dt.createDataMovie24();
+        db.execSQL(sql);
+        sql = dt.createDataMovie25();
+        db.execSQL(sql);
+        sql = dt.createDataMovie26();
+        db.execSQL(sql);
+        sql = dt.createDataMovie27();
+        db.execSQL(sql);
+        sql = dt.createDataMovie28();
+        db.execSQL(sql);
+        sql = dt.createDataMovie29();
+        db.execSQL(sql);
+        sql = dt.createDataMovie30();
+        db.execSQL(sql);
     }
 
     @Override

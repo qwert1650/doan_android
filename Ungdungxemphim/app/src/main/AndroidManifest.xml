@@ -10,18 +10,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:showOnLockScreen="true" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MovieDetail" />
+        <activity android:name=".MovieDetail" android:screenOrientation="portrait" />
         <!-- <activity android:name=".CommentCustomList" /> -->
-        <activity android:name=".BUS.WatchMovieBUS" />
+        <activity android:name=".BUS.WatchMovieBUS" android:screenOrientation="portrait"/>
         <!-- <activity android:name=".RelatedMovieCustomList"></activity> -->
-        <activity android:name=".View.TypeMovie"></activity>
+        <activity android:name=".View.TypeMovie" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

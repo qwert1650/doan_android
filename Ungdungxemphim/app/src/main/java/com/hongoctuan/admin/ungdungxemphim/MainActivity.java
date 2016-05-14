@@ -146,7 +146,7 @@ public class MainActivity extends ActionBarActivity{
             @Override
             public void onClick(View v) {
                 iv_back.setVisibility(View.VISIBLE);
-                auto_Search.setPadding(50, 0, 50, 0);
+                auto_Search.setPadding(40, 0, 50, 0);
                 db.insertLichSu(auto_Search.getText().toString());
                 loadTimKiem();
             }
@@ -163,6 +163,8 @@ public class MainActivity extends ActionBarActivity{
         auto_Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                iv_back.setVisibility(View.VISIBLE);
+                auto_Search.setPadding(40, 0, 50, 0);
                 loadGoiYSeach(auto_Search.getText().toString());
             }
         });

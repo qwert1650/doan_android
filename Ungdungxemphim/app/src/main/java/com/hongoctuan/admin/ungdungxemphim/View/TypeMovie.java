@@ -15,15 +15,16 @@ import java.util.ArrayList;
 public class TypeMovie extends AppCompatActivity {
     DatabaseHelper db;
     ListView lv_typeMovie;
-    ArrayList<MovieDTO> listMovie = new ArrayList<MovieDTO>();
+    ArrayList<MovieDTO> listMovie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_movie);
-        db= new DatabaseHelper(this);
+        db= new DatabaseHelper(getApplicationContext());
         Intent callerIntent=getIntent();
         Bundle packageFromCaller= callerIntent.getBundleExtra("myData");
         String typeMovieId = packageFromCaller.getString("maloai");
+        listMovie = new ArrayList<MovieDTO>();
         listMovie = db.getTypeMovie(typeMovieId);
         lv_typeMovie = (ListView) findViewById(R.id.lv_typeMovie);
         RelatedMovieCustomList adapter = new RelatedMovieCustomList(this, R.layout.activity_list_goi_yphim__custom, listMovie);

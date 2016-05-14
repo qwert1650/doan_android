@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class RelatedMovieCustomList extends ArrayAdapter<MovieDTO> {
     Activity context;
-    ArrayList<MovieDTO> objects;
+    ArrayList<MovieDTO> objects = new ArrayList<MovieDTO>();
     public RelatedMovieCustomList(Activity context, int resource, ArrayList<MovieDTO> objects) {
         super(context, resource, objects);
         this.objects = objects;
