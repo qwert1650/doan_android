@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/line_loginlayout"
     android:orientation="vertical">
 
     <ImageView
@@ -15,6 +16,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/txtNotification" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Tên Đăng Nhập:"
         android:id="@+id/txt_tendangnhap" />
 
@@ -23,7 +29,8 @@
         android:layout_height="wrap_content"
         android:hint="Nhập Tên Đăng Nhập"
         android:id="@+id/eidt_tendangnhap"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:text="administator" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,7 +44,8 @@
         android:hint="matkhau"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/edit_matkhau" />
+        android:id="@+id/edit_matkhau"
+        android:text="123456" />
 
     <Button
         android:layout_width="match_parent"
@@ -49,6 +57,12 @@
         android:layout_height="wrap_content"
         android:text="Đăng Nhập Facebook"
         android:id="@+id/btn_loginfacebook" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng Ký Tài Khoản"
+        android:id="@+id/txt_dangkytaikhoan" />
 
     <TextView
         android:layout_width="wrap_content"
